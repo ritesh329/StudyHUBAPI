@@ -173,12 +173,12 @@ export const adminLogin = async (
     });
 
     /* ================= SECURE COOKIE ================= */
-    res.cookie("token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-     sameSite: "none",  
-      maxAge: 60 * 60 * 1000, // 1 hour
-    });
+ res.cookie("token", token, {
+  httpOnly: true,
+  secure: false,       // 🔥 IMPORTANT
+  sameSite: "lax",     // 🔥 IMPORTANT
+  maxAge: 60 * 60 * 1000,
+});
 
     /* ================= REMOVE PASSWORD ================= */
     const adminObj = admin.toObject();

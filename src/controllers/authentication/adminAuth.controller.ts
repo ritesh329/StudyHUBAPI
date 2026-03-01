@@ -173,20 +173,14 @@ export const adminLogin = async (
     });
 
     /* ================= SECURE COOKIE ================= */
-//  res.cookie("token", token, {
-//   httpOnly: true,
-//   secure: false,       // 🔥 IMPORTANT
-//   sameSite: "lax",     // 🔥 IMPORTANT
-//   maxAge: 60 * 60 * 1000,
-// });
-
-        res.cookie("token", token, {
+res.cookie("token", token, {
   httpOnly: true,
-  secure: false,     // dev
-  sameSite: "lax",
-  path: "/",         // 🔥 MUST
+  secure: true,
+  sameSite: "none",  // 🔥 important for cross-origin
   maxAge: 60 * 60 * 1000,
 });
+
+
 
     /* ================= REMOVE PASSWORD ================= */
     const adminObj = admin.toObject();
